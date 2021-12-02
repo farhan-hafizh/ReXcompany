@@ -20,15 +20,30 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon1">@</span>
                         </div>
-                        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
+                        <input type="text" name="username" class="form-control @error('username') is-invalid  @enderror" placeholder="Username" value="{{ old('username') }}" aria-label="Username" aria-describedby="basic-addon1" required>
+                        @error('username')
+                           <div class="invalid-feedback">
+                             {{ $message }}
+                           </div>
+                       @enderror
                       </div>
                     <div class="form-group mb-3">
                        <label for="inputFullName">Full Name</label>
-                       <input type="text" name="fullname" class="form-control" placeholder="Password" required>
+                       <input type="text" name="fullname" class="form-control @error('fullname') is-invalid  @enderror" placeholder="Full Name" value="{{ old('fullname') }}" required>
+                       @error('fullname')
+                           <div class="invalid-feedback">
+                             {{ $message }}
+                           </div>
+                       @enderror
                     </div>
                     <div class="form-group mb-3">
                       <label for="inputPassword">Password</label>
-                      <input type="password" name="password" class="form-control" placeholder="Password" required>
+                      <input type="password" name="password" class="form-control @error('password') is-invalid  @enderror" value="{{ old('password') }}" placeholder="Password" required>
+                      @error('password')
+                           <div class="invalid-feedback">
+                             {{ $message }}
+                           </div>
+                       @enderror
                     </div>
                     <div class="form-group mb-3 ">
                         <label for="inputRole">Role</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -18,7 +19,15 @@ class RegisterController extends Controller
             'password' => 'required|alpha_num|min:6',
             'fullname' => 'required '
         ];
-        $request->validate($rules);
         
+        $validated=$request->validate($rules);
+
+        //encrypt password
+        $validated['password']=bcrypt($validated['password']);
+        User::create($validated);
+
+        // add notification when success
+        $request->session()->flash('succes','Registration success! Please login!');
+        return redirect('/login');
     }
 }

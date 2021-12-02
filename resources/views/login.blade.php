@@ -2,6 +2,15 @@
 
 @section('container')
     <div class="row h-100">
+
+      {{-- alert  --}}
+      @if (session()->has('succes'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ session('success') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>    
+      @endif
+      
         <div class="col-4 bg-dark text-white">
             <div class="d-flex flex-row-reverse">
                 <a class="mr-4 mt-2" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
