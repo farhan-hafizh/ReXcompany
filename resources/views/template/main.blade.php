@@ -7,3 +7,4 @@
     </div>
     @include('template.footbar')
 @endsection
+

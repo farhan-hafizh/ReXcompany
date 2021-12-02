@@ -12,9 +12,8 @@
             <div class="p-5">
                 <h1>REGISTRATION PAGE</h1>
                 <form class="p-4" action="/register" method="POST">
-                    {{-- add csrf token --}}
+                  {{-- prevent Cross site request forgery --}}
                     @csrf
-                    
                     <label for="usernameInput">Username</label>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -60,7 +59,8 @@
             </div>
         </div>
         <div class="col-8 no-padding">
-            <img class="mw-100" src="{{asset('img/building.jpg')}}">
-        </div>
+          <div class="no-padding auth-background float-end">
+          </div>
+        </div>        
     </div>
 @endsection

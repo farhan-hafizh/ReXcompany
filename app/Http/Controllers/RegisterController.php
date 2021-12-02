@@ -15,19 +15,22 @@ class RegisterController extends Controller
     }
     public function store(Request $request){
         $rules=[
-            'username' => 'required|unique:users|min:6',
-            'password' => 'required|alpha_num|min:6',
-            'fullname' => 'required '
+            'fullname' => 'required',
+            'username' => 'unique:users|min:6',
+            'password' => 'alpha_num|min:6',
+            'role' => 'required'
         ];
         
-        $validated=$request->validate($rules);
+        $validatedData=$request->validate($rules);
 
         //encrypt password
-        $validated['password']=bcrypt($validated['password']);
-        User::create($validated);
+        $validatedData['password']=bcrypt($validatedData['password']);
+        
+        // dd($validated);
+        User::create($validatedData);
 
         // add notification when success
-        $request->session()->flash('succes','Registration success! Please login!');
-        return redirect('/login');
+        // $request->session()->flash('succes','Registration success! Please login!');
+        return redirect('/login')->with('success','Registration success! Please login!');
     }
 }

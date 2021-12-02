@@ -21,3 +21,4 @@ Route::get('/register', [RegisterController::class, 'index']);
 
 //if route have post
 Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/login', [LoginController::class, 'login']);
