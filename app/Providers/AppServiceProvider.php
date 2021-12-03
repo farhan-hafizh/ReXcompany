@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;    
+use Illuminate\Support\Facades\Blade;   
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,5 +28,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Paginator::useBootstrap();
+
+        Blade::if('admin', function () {
+            return auth()->check() && auth()->user()->role == "admin";
+        });
+        Blade::if('member', function () {
+            return auth()->check() && auth()->user()->role == "member";
+        });
     }
 }

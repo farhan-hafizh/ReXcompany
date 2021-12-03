@@ -28,4 +28,15 @@ class LoginController extends Controller
 
         return back()->with('loginError','Login failed! Username or Password wrong!');
     }
+    public function logout(Request $request){
+        Auth::logout();
+
+        //session not validated
+        $request->session()->invalidate();
+
+        //new session token
+        $request->session()->regenerateToken();
+        
+        return redirect('/')->with("loggedout","Successfully logged out!");
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,10 @@ class RegisterController extends Controller
 
         //encrypt password
         $validatedData['password']=bcrypt($validatedData['password']);
-        
+        //create slug
+        $validatedData['slug']=Str::slug($validatedData['fullname']);
+        $validatedData['profile_picture']="default_profile.png";
+
         // dd($validated);
         User::create($validatedData);
 
