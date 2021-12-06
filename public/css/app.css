@@ -60,3 +60,14 @@ a .profile-picture{
     height: auto;
     opacity: 0.7;
 }
+.btn-add-game{
+  position: fixed; 
+  bottom: 20px; 
+  right: 20px;
+  background-color:darkgrey;
+  padding: 9px;
+}
+.dot {
+  border-radius: 50%;
+  display: inline-block;
+}

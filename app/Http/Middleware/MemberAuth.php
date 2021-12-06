@@ -19,6 +19,7 @@ class MemberAuth
     {
         if(Auth::user()->role=="member")
             return $next($request);
-    
+
+        abort(403);
     }
 }
