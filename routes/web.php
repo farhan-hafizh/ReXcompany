@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\GameDetailController;
 use App\Http\Controllers\AddGameController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
@@ -28,10 +29,16 @@ Route::get('/trans-history/{id}', [TransHistoryController::class,'index'])->midd
 //admin only
 Route::get('/manage-game', [ManagerController::class,'index'])->middleware('admin');
 Route::get('/add-game', [AddGameController::class,'index'])->middleware('admin');
+Route::post('/add-game', [AddGameController::class,'store'])->middleware('admin');
+
 
 //auth post form
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
 
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/game-detail/{slug}', [GameDetailController::class,'index']);
+
+Route::get('/game-detail/add-cart/{slug}', [GameDetailController::class,'addCart'])->middleware('auth');
+
 

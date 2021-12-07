@@ -17,7 +17,6 @@ class CreateGameDetailsTable extends Migration
             $table->id()->autoIncrement();
             $table->string('developer');
             $table->string('publisher');
-            $table->date('release_date');
             $table->integer('price');
             $table->boolean('forAdult');
             $table->string('game_cover');

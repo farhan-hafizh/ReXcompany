@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class GameDetail extends Model
 {
     use HasFactory;
+    public function game(){
+        return $this->hasOne(Game::class);
+    }
 }

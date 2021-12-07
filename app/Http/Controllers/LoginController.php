@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
@@ -23,6 +25,14 @@ class LoginController extends Controller
             //prevent session fix session
             $request->session()->regenerate();
             
+            $id=Auth::id();
+            $dataTrans=Transaction::where('user_id','=',$id)
+            ->where('status','=',0)
+            ->get();
+            //set cookies
+            Cookie::queue('cart',json_encode($dataTrans),120);
+            Cookie::queue('totalcart',$dataTrans->count(),120);
+
             return redirect()->intended('/');
         }
 

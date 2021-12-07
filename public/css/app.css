@@ -71,3 +71,13 @@ a .profile-picture{
   border-radius: 50%;
   display: inline-block;
 }
+.buy-card{
+  height: 90px;
+}
+.bottom-right{
+  bottom: 0;
+  right: 0;
+}
+hr{
+  height: 5px;
+}

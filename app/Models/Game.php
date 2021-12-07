@@ -13,7 +13,7 @@ class Game extends Model
         if(request('title')){
             return $query->where('name','like','%'. request('title').'%');
         }
-    }
+    }   
     public function scopeFindGenre($query){
         if(request('category')){
             $request=request('category');
@@ -24,8 +24,8 @@ class Game extends Model
         }
     }
 
-    public function detailGame(){
-        return $this->hasOne(GameDetail::class);
+    public function gameDetail(){
+        return $this->hasOne(GameDetail::class,'id');
     }
     public function genre(){
         return $this->belongsTo(Genre::class);
