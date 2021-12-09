@@ -2,7 +2,7 @@
 
 @section('container')
     @include('template.navbar')
-    <div class="bg-light">
+    <div>
         @yield('main-content')
     </div>
     @include('template.footbar')

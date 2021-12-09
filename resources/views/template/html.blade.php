@@ -12,7 +12,7 @@
 
     <title>{{ config('app.name')." | ".$title }}</title>
   </head>
-  <body>
+  <body class="bg-light">
     @yield('container')
 
     <!-- Optional JavaScript -->

@@ -8,7 +8,7 @@ class FriendsController extends Controller
 {
     //
     public function index(){
-        return view('profile',[
+        return view('friends',[
             'title' => 'Friends'
         ]);
     }

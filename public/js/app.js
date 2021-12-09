@@ -1,5 +1,5 @@
-$("#search-bar").keydown(function(e){
-  if (e.keyCode == 13) {
-          $("#btn-search").click();
-  }
-});
+// $("#search-bar").keydown(function(e){
+//   if (e.keyCode == 13) {
+//           $("#btn-search").click();
+//   }
+// });

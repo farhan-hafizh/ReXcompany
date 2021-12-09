@@ -12,29 +12,27 @@ class GameDetailController extends Controller
 {
     //
     public function index($slug){
+        // dd($slug);
         $game=Game::with(['genre','gameDetail'])->where('slug',$slug)->get();
         $id=$game[0]->id;
         $forAdult=$game[0]->gameDetail->forAdult;
-        if($forAdult==1){
+        if($forAdult==1&&!Cookie::get('mature')){
             return view('age-confirm',[
                 'title' => "Age Check",
                 'game' => $game,
                 // 'trans' => Transaction::where('game_id','=',$id)->get()
             ]);
         }
-         return $this->open($game);
-    }
-    public function open($data){
-        if ($data[0] instanceof Game){
-            $game=$data;
-        }else    
-            $game=Game::with(['genre','gameDetail'])->where('slug',$data)->get();
-
-        // dd($game);
         return view('game-detail',[
             'title' => "Detail Game",
             'game' => $game,
         ]);
+    }
+    public function open(Request $request){
+        $slug=$request->slug;
+        Cookie::queue('mature',true,120);
+        return redirect('/game-detail/'.$slug.'');
+        
     }
     public function addCart($slug){
         $game=Game::where('slug',$slug)->get();

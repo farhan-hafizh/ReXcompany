@@ -33,7 +33,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{-- <div class="profile-picture"> --}}
-                  <img class="profile-picture rounded" src="{{ asset("img/".auth()->user()->profile_picture) }}" alt="Profile Picture">
+                  <img class="profile-picture rounded" src="{{ asset("img/user_profile/".auth()->user()->profile_picture) }}" >
                 {{-- </div>   --}}
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
