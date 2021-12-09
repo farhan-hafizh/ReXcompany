@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('role');
             $table->string('slug');
             $table->string('profile_picture');
-            // $table->foreignId('cart_id');
+            $table->integer('level');
             $table->rememberToken();
             $table->timestamps();
         });

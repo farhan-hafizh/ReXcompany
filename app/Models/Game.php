@@ -1,4 +1,4 @@
-<?php
+<?php   
 
 namespace App\Models;
 
@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     use HasFactory;
+    protected $guarded=['id'];
 
-    public function scopeFindName($query){
-        if(request('title')){
-            return $query->where('name','like','%'. request('title').'%');
+    public function scopeFindName($query, array $filter){
+        if(($filter) ? $filter['search'] : false){
+            return $query->where('name','like','%'.$filter['search']."%");
         }
     }   
     public function scopeFindGenre($query){

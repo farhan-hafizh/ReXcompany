@@ -40,9 +40,9 @@
         </form>
     </div>
     <div class="container-fluid p-5">
-        @foreach ($game as $item)
         <div class="row">
-            <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+        @foreach ($game as $item)
+            <div class="col-8 col-sm-6 col-md-4 col-lg-3 pt-2">
                 <div class="card">
                         <img class="card-img" src="{{ asset('game_assets/img/'.$item->gameDetail->game_cover)}}" alt="Bologna">
                       <div class="card-img-overlay box bg-white">
@@ -52,12 +52,16 @@
                 </div>
                 <div class="d-flex mt-3 justify-content-around">
                     <a href="/update/{{$item->slug}}" class="btn btn-dark">Update</a>
-                    <a href="/delete/{{$item->slug}}" class="btn btn-danger">Delete</a>
+                    <form action="{{route('game.destroy',$item->id)}}" method="POST">
+                    @method('delete')
+                    @csrf
+                    <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this game? All of your data will be permanently removed from our server forever. This action cannot be undone!')">Delete</button>
+                    </form>
+                    {{-- <a href="/delete/{{$item->slug}}" class="btn btn-danger">Delete</a> --}}
                   </div>
               </div>
-          </div>
-          
-        @endforeach         
+              @endforeach         
+            </div>
     </div>
     <div class="btn-add-game btn">
         <a href="/add-game"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-diff" viewBox="0 0 16 16">

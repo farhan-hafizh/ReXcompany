@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class GameDetail extends Model
 {
     use HasFactory;
+    protected $guarded=['id'];
+
     public function game(){
         return $this->hasOne(Game::class);
     }

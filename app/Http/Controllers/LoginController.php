@@ -47,6 +47,6 @@ class LoginController extends Controller
         //new session token
         $request->session()->regenerateToken();
         
-        return redirect('/')->with("loggedout","Successfully logged out!");
+        return redirect('/')->withCookie('cart','',-1)->withCookie('totalcart','',-1)->with("loggedout","Successfully logged out!");
     }
 }

@@ -7,4 +7,9 @@ use Illuminate\Http\Request;
 class FriendsController extends Controller
 {
     //
+    public function index(){
+        return view('profile',[
+            'title' => 'Friends'
+        ]);
+    }
 }

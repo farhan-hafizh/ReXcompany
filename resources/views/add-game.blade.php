@@ -7,7 +7,7 @@
             @csrf
             <div class="form-group">
                 <label for="game-name">Game Name</label>
-                <input class="form-control" type="text" name="name">
+                <input class="form-control @error('name') is-invalid  @enderror" type="text" name="name">
                 @error('name')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label for="game-desc">Game Description</label>
-                <textarea class="form-control" name="description" rows="1"></textarea>
+                <textarea class="form-control @error('description') is-invalid  @enderror" name="description" rows="1"></textarea>
                 @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -25,8 +25,8 @@
             </div>
             <div class="form-group">
                 <label for="game-desc-long">Game Long Description</label>
-                <textarea class="form-control" name="long_description" rows="5"></textarea>
-                @error('long-description')
+                <textarea class="form-control @error('long_description') is-invalid  @enderror" name="long_description" rows="5"></textarea>
+                @error('long_description')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label for="game-category">Game Category</label>
-                <select class="form-control" name="genre">
+                <select class="form-control @error('genre') is-invalid  @enderror" name="genre">
                     @foreach ($category as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label for="game-developer">Game Developer</label>
-                <input class="form-control" type="text" name="developer">
+                <input class="form-control @error('developer') is-invalid  @enderror" type="text" name="developer">
                 @error('developer')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label for="game-publisher">Game Publisher</label>
-                <input class="form-control" type="text" name="publisher">
+                <input class="form-control @error('publisher') is-invalid  @enderror" type="text" name="publisher">
                 @error('publisher')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
                 <label for="game-price">Game Price</label>
-                <input class="form-control" type="number" name="price">
+                <input class="form-control @error('price') is-invalid  @enderror" type="number" name="price">
                 @error('price')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -74,7 +74,7 @@
             </div>
             <div class="form-group">
                 <label for="game-cover">Game Cover</label>
-                <input class="form-control" type="file" name="game_cover">
+                <input class="form-control @error('game_cover') is-invalid  @enderror" type="file" name="game_cover">
                 @error('game_cover')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -83,7 +83,7 @@
             </div>
             <div class="form-group">
                 <label for="game-trailer">Game Trailer</label>
-                <input class="form-control" type="file" name="game_trailer">
+                <input class="form-control @error('game_trailer') is-invalid  @enderror" type="file" name="game_trailer">
                 @error('game_trailer')
                     <div class="invalid-feedback">
                         {{ $message }}

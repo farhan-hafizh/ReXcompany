@@ -25,6 +25,7 @@ class RegisterController extends Controller
 
         //encrypt password
         $validatedData['password']=bcrypt($validatedData['password']);
+        $validatedData['level']=0;
         //create slug
         $validatedData['slug']=Str::slug($validatedData['fullname']);
         $validatedData['profile_picture']="default_profile.png";

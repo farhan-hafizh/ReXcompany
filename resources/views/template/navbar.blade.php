@@ -16,9 +16,9 @@
           @endadmin         
         </ul>
         <div class="ml-auto d-flex">
-          <form class="d-flex mr-2">
-            <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light" type="submit">Search</button>
+          <form action="/" class="d-flex mr-2">
+            <input class="form-control mr-2" name="search" id="search-bar" type="search" placeholder="Search" aria-label="Search">
+            {{-- <button class="btn btn-outline-light display-none" id="btn-search" type="submit">Search</button> --}}
         </form>
             {{-- user is logged in --}}
             <ul class="navbar-nav ms-auto">

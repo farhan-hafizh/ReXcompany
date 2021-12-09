@@ -16,4 +16,11 @@ class ManagerController extends Controller
             "genre" => Genre::all(),
         ]);
     }
+    public function destroy($id){
+        $game=Game::find($id);
+        $detailGameId=$game->game_detail_id;
+        GameDetail::destroy($detailGameId);
+        Game::destroy($game->id);
+        return redirect('/manage-game')->with('succes','Game has been deleted!');
+    }
 }

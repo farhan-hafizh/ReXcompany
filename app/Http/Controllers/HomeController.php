@@ -10,9 +10,12 @@ class HomeController extends Controller
     //
     public function index(){
         // dd(cookie('cart'));
+        $search=(request(['search']))?? "";
+        // dd($search);
         return view('home',[
             'title' => 'Home',
-            'game' => Game::with(['genre','gameDetail'])->latest()->paginate(10)
+            'search' => $search,
+            'game' => Game::with(['genre','gameDetail'])->latest()->findname($search)->paginate(10)
         ]);
     }
 }

@@ -14,12 +14,26 @@ class GameDetailController extends Controller
     public function index($slug){
         $game=Game::with(['genre','gameDetail'])->where('slug',$slug)->get();
         $id=$game[0]->id;
-        // dd(Cookie::get('cart'));
+        $forAdult=$game[0]->gameDetail->forAdult;
+        if($forAdult==1){
+            return view('age-confirm',[
+                'title' => "Age Check",
+                'game' => $game,
+                // 'trans' => Transaction::where('game_id','=',$id)->get()
+            ]);
+        }
+         return $this->open($game);
+    }
+    public function open($data){
+        if ($data[0] instanceof Game){
+            $game=$data;
+        }else    
+            $game=Game::with(['genre','gameDetail'])->where('slug',$data)->get();
 
+        // dd($game);
         return view('game-detail',[
             'title' => "Detail Game",
             'game' => $game,
-            'trans' => Transaction::where('game_id','=',$id)->get()
         ]);
     }
     public function addCart($slug){
@@ -28,10 +42,10 @@ class GameDetailController extends Controller
         $userId=Auth::id();
         $record=Transaction::latest()->first();
         $id=isset($record[0]->id) ? (int)$record[0]->id+1: 1;
-        $transId="INV".date('YmmddHis')."-".$id;
+        // $transId="INV".date('YmmddHis')."-".$id;
         // dd($transId);
         Transaction::create([
-            'transaction_id' => $transId,
+            // 'transaction_id' => $transId,
             'user_id' => $userId,
             'game_id' => $game_id,
             'status' => 0]);

@@ -28,8 +28,10 @@ class AddGameController extends Controller
             'developer' => 'required',
             'price' => 'required|numeric|max:1000000',
             'game_cover' =>'image|mimes:jpg|max:100',
-            'game_trailer' => 'mimes:webm|max:100000'
+            'game_trailer' => 'mimes:webm|max:100000',
+            // 'forAdult' => ''
         ];
+        // dd($rules);
         $validated= $request->validate($rules);
         
         $gameCover=$request->file('game_cover');
@@ -45,7 +47,7 @@ class AddGameController extends Controller
         $gameDetail->publisher=$validated['publisher'];
         $gameDetail->price=$validated['price'];
         $adult=0;
-        if($request['forAdult'])
+        if($request->has('forAdult'))
             $adult=1;    
         $gameDetail->forAdult=$adult;
         $gameDetail->game_cover = $coverName;

@@ -2,10 +2,15 @@
 
 @section('main-content')
     <div class="container-fluid p-5">
-        <h1>Top Picks</h1>
+      @if ($search)
+      <h1>Search result of '{{$search['search']}}'</h1>
+      @else
+      <h1>Top Picks</h1>
+      @endif
+        <div>
+          <div class="row">
         @foreach ($game as $item)
-            <div class="row">
-              <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+              <div class="col-8 col-sm-6 col-md-4 col-lg-3 pt-2">
                   <a href="/game-detail/{{ $item->slug }}">
                     <div class="card h-100 w-100">
                             <img class="card-img" src="{{ asset('game_assets/img/'.$item->gameDetail->game_cover)}}" alt="Bologna">
@@ -16,7 +21,8 @@
                     </div>
                   </a>
                   </div>
-              </div>
-            @endforeach                  
+                  @endforeach
+                </div>
+          </div>                  
     </div>
 @endsection
