@@ -2,9 +2,6 @@
 
 @section('main-content')
 <div class="container-fluid p-5">
-        @php
-            // dd(gettype($game));
-        @endphp
         @foreach ($game as $item)
         <div class="mb-3 text-dark">
             <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
@@ -41,13 +38,14 @@
             $count=0;
         @endphp
         @member
-            @foreach (json_decode(Cookie::get('cart')) as $item1)
+            @foreach (json_decode(Cookie::get('user_trans')) as $item1)
                 @if ($item1->game_id==$item->id)
                     @php
                         $count++;
                     @endphp
                 @endif
             @endforeach  
+            @endmember
         
         @if ($count==0)
             <div class="position-relative card shadow p-4 mt-2 bg-white rounded buy-card">
@@ -57,7 +55,6 @@
                 </div>
             </div>
         @endif
-        @endmember
         <div class="mt-3">
             <h4><b>About This Game</b></h4>
             <hr class="bg-dark h-2">

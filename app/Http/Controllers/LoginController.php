@@ -27,13 +27,16 @@ class LoginController extends Controller
             
             $id=Auth::id();
             $dataTrans=Transaction::where('user_id','=',$id)
+            ->get();
+            $id=Auth::id();
+            $totalCart=Transaction::where('user_id','=',$id)
             ->where('status','=',0)
             ->get();
             $user=Auth::user();
             Auth::login($user, $request->get('remember'));
             //set cookies
-            Cookie::queue('cart',json_encode($dataTrans),120);
-            Cookie::queue('totalcart',$dataTrans->count(),120);
+            Cookie::queue('user_trans',json_encode($dataTrans),120);
+            Cookie::queue('totalcart',$totalCart->count(),120);
 
             return redirect()->intended('/');
         }
@@ -49,6 +52,6 @@ class LoginController extends Controller
         //new session token
         $request->session()->regenerateToken();
         
-        return redirect('/')->withCookie('cart','',-1)->withCookie('totalcart','',-1)->withCookie('mature','',-1)->with("loggedout","Successfully logged out!");
+        return redirect('/')->withCookie('user_trans','',-1)->withCookie('totalcart','',-1)->withCookie('mature','',-1)->with("loggedout","Successfully logged out!");
     }
 }

@@ -11,11 +11,12 @@
                 <label for="inputUsername"> <b> Username</b></label>
                 <input type="text" name="username" class="form-control-plaintext" value="{{ $user->username }}" placeholder="Fullname" disabled>
             </div>
+            @member
             <div class="form-group">
                 <label for="inputLevel"><b>Level</b></label>
                 <input type="text" name="username" class="form-control-plaintext" value="{{ $user->level }}" placeholder="Fullname" disabled>
             </div>
-            
+            @endmember
             <div class="form-group" style="width: 80px;height:80px">
                 <label for="inputPhoto"><b>Photo</b></label>
                 <img class="rounded-circle" style="width: 80px;height:80px;overflow: hidden;"src="{{ asset("img/user_profile/".$user->profile_picture) }}">

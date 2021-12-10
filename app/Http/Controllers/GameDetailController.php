@@ -50,11 +50,14 @@ class GameDetailController extends Controller
         
             $id=Auth::id();
             $dataTrans=Transaction::where('user_id','=',$id)
+            ->get();
+            $totalCart=Transaction::where('user_id','=',$id)
             ->where('status','=',0)
             ->get();
             //set cookies
-            Cookie::queue('cart',json_encode($dataTrans),120);
-            Cookie::queue('totalcart',$dataTrans->count(),120);
+            Cookie::queue('user_trans',json_encode($dataTrans),120);
+            Cookie::queue('totalcart',$totalCart->count(),120);
+            
         
         
         return back()->with('succes','Game Added to Cart!');

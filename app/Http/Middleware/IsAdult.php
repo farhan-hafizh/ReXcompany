@@ -25,6 +25,6 @@ class IsAdult
             // dd($next($request));
             return $next($request);
         }
-        return back();
+        return back()->withCookie('forbiden','You\'re not allowed to access this page!');
     }
 }

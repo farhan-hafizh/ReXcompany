@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/login', [LoginController::class, 'index'])->name('login');//tell laravel it's login
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');//tell laravel it's login
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');//only guest can access
 
 //member only

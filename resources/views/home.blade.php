@@ -23,6 +23,7 @@
                   </div>
                   @endforeach
                 </div>
-          </div>                  
+                {{$game->links()}}                  
+          </div>
     </div>
 @endsection
