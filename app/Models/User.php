@@ -24,4 +24,13 @@ class User extends Authenticatable
             ]
         ];
     }
+    function friends(){
+        return $this->belongsToMany(User::class, 'friend_lists', 'user_id', 'friend_id')->wherePivot('status', '=', 1);
+    }
+    function friendsRequested(){
+        return $this->belongsToMany(User::class, 'friend_lists', 'user_id', 'friend_id')->wherePivot('status', '=', 0);
+    }
+    function incomeFriendRequest(){
+        return $this->belongsToMany(User::class, 'friend_lists', 'friend_id', 'user_id')->wherePivot('status','=',0);
+    }
 }

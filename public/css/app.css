@@ -93,3 +93,10 @@ footer{
   height: 70px; 
   /* width: 100; */
 }
+.profile-picture{
+  width: 50px;
+}
+hr.divider { 
+  margin: 0em;
+  border-width: 2px;
+} 

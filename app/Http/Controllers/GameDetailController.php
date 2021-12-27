@@ -14,7 +14,7 @@ class GameDetailController extends Controller
     public function index($slug){
         // dd($slug);
         $game=Game::with(['genre','gameDetail'])->where('slug',$slug)->get();
-        $id=$game[0]->id;
+        // $id=$game[0]->id;
         $forAdult=$game[0]->gameDetail->forAdult;
         if($forAdult==1&&!Cookie::get('mature')){
             return view('age-confirm',[

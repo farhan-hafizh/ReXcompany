@@ -13,4 +13,7 @@ class Transaction extends Model
     public function user(){
         return $this->hasOne(User::class);
     }
+    public function transactionItems(){
+        return $this->hasOne(TransactionItem::class);
+    }
 }

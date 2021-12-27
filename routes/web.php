@@ -43,7 +43,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/game-detail/{slug}', [GameDetailController::class,'index']);
 
 Route::get('/profile', [ProfileController::class,'index'])->middleware('auth');
+
 Route::get('/friends', [FriendsController::class,'index'])->middleware('auth');
+Route::post('/friends',[FriendsController::class, 'addFriend']);
+
 Route::get('/trans-history', [TransHistoryController::class,'index'])->middleware('auth');
 
 //agecheck
