@@ -13,7 +13,10 @@ class Transaction extends Model
     public function user(){
         return $this->hasOne(User::class);
     }
-    public function transactionItems(){
-        return $this->hasOne(TransactionItem::class);
+    public function game(){
+        return $this->hasMany(Game::class,'id','game_id');
     }
+    // public function getCart(){
+    //     return $this->hasMany(Game::class,'game_id')->wherePivot('status','=',0);
+    // }
 }

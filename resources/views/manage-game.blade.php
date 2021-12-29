@@ -57,7 +57,6 @@
                     @csrf
                     <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this game? All of your data will be permanently removed from our server forever. This action cannot be undone!')">Delete</button>
                     </form>
-                    {{-- <a href="/delete/{{$item->slug}}" class="btn btn-danger">Delete</a> --}}
                   </div>
               </div>
               @endforeach         

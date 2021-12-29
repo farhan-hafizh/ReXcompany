@@ -99,4 +99,8 @@ footer{
 hr.divider { 
   margin: 0em;
   border-width: 2px;
-} 
+}
+.cart-img{
+  height: 100px;
+  width: 50px;
+}

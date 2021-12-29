@@ -17,6 +17,7 @@
         @if (count($pending)==0)
             <p class="text-secondary">There's no incoming friend request.</p>
         @else
+        <div class="row">
             @foreach ($pending as $item)
             <div class="col-8 col-sm-6 col-md-5 p-2">
                 <div class="card p-2 bg-light">
@@ -40,12 +41,13 @@
                 </div>
                     <hr class="divider"/>
                     <div class="d-flex flex-row">
-                        <a href="/friends/cancel/{{$item->id}}" class="btn btn-light border-right w-50">Reject</a>
+                        <a href="/friends/reject/{{$item->id}}" class="btn btn-light border-right w-50">Reject</a>
                         <a href="/friends/accept/{{$item->id}}" class="btn btn-light w-50   ">Accept</a>
                     </div>
                 </div>
             </div>
             @endforeach
+        </div>
         @endif
     </div>
     <hr />
@@ -54,32 +56,34 @@
         @if (count($requesting)==0)
             <p class="text-secondary">There's no pending friend request.</p>
         @else
+        <div class="row">
             @foreach ($requesting as $item)
-            <div class="col-8 col-sm-6 col-md-5 p-2">
-                <div class="card p-2 bg-light">
-                    <div class="d-flex flex-row p-0">
-                    <div class="w-75 mr-3">
-                        <div class=" d-flex flex-row">
-                            <div>
-                                <p class="no-padding">{{$item->fullname}}</p>
+                    <div class="col-8 col-sm-6 col-md-4 p-2">
+                        <div class="card p-2 bg-light">
+                            <div class="d-flex flex-row p-0">
+                            <div class="w-75 mr-3">
+                                <div class=" d-flex flex-row">
+                                    <div>
+                                        <p class="no-padding">{{$item->fullname}}</p>
+                                    </div>
+                                    <div class="ml-3 rounded-circle">
+                                       <p class="bg-info text-white pl-1 pr-1 rounded-circle no-padding">{{$item->level}}</p>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-secondary no-padding">{{$item->role}}</p>
+                                </div>
                             </div>
-                            <div class="ml-3 rounded-circle">
-                               <p class="bg-info text-white pl-1 pr-1 rounded-circle no-padding">{{$item->level}}</p>
+                            <div class="w-25">
+                                <img class="rounded-circle profile-picture" src="{{asset('img/user_profile/'.$item->profile_picture)}}" alt="">
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <p class="text-secondary no-padding">{{$item->role}}</p>
+                            <hr class="divider"/>
+                            <a href="/friends/cancel/{{$item->id}}" class="btn btn-light">Cancel</a>
                         </div>
                     </div>
-                    <div class="w-25">
-                        <img class="rounded-circle profile-picture" src="{{asset('img/user_profile/'.$item->profile_picture)}}" alt="">
-                    </div>
+                    @endforeach
                 </div>
-                    <hr class="divider"/>
-                    <a href="/friends/cancel/{{$item->id}}" class="btn btn-light">Cancel</a>
-                </div>
-            </div>
-            @endforeach
         @endif
     </div>
     <hr/>
@@ -88,6 +92,7 @@
         @if (count($friends)==0)
             <p class="text-secondary">There's no friend.</p>
         @else
+        <div class="row">
             @foreach ($friends as $item)
             <div class="col-8 col-sm-6 col-md-5 p-2">
                 <div class="card p-2 bg-light">
@@ -112,6 +117,7 @@
                 </div>
             </div>
             @endforeach
+        </div>
         @endif
     </div>
 @endsection
