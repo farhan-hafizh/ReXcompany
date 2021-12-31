@@ -11,10 +11,10 @@ class FriendsController extends Controller
 {
     //
     public function index(){
-        $id=Auth::id();
         return view('friends',[
             'title' => 'Friends',
-            'friends' => Auth::user()->friends,
+            //merge the collection
+            'friends' => Auth::user()->friendsAdded->merge(Auth::user()->friendsAddedBy),
             'requesting' => Auth::user()->friendsRequested,
             'pending' => Auth::user()->incomeFriendRequest,
         ]);
@@ -42,7 +42,7 @@ class FriendsController extends Controller
         return back();
     }
     public function acceptFriendRequest($id){
-        DB::table('friend_lists')->where('friend_id', '=', Auth::id())->where('user_id', '=', $id)->delete();
+        DB::table('friend_lists')->where('friend_id', '=', Auth::id())->where('user_id', '=', $id)->update(['status'=>1]);
         return back();
     }
 }

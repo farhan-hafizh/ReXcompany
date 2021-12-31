@@ -63,6 +63,8 @@ Route::resource('cart', CartController::class);
 Route::get('/checkout/{price}', [TransInfoController::class,'index'])->middleware('auth');
 //trans info
 Route::post('/trans-info',[TransInfoController::class,'insert'])->middleware('auth');
+//trans receipt
+Route::get('/trans-receipt/{trans_id}/{price}', [TransHistoryController::class,'transReceipt'])->middleware('auth');
 
 
 

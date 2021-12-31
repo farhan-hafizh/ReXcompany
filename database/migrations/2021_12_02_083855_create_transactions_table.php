@@ -15,7 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('transaction_id')->unique()->nullable();
+            $table->string('transaction_id')->nullable();
             $table->foreignId('user_id');
             $table->foreignId('game_id');
             $table->tinyInteger('status')->comment('0.cart 1.paid');

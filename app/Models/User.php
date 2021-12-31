@@ -24,7 +24,10 @@ class User extends Authenticatable
             ]
         ];
     }
-    function friends(){
+    function friendsAddedBy(){
+        return $this->belongsToMany(User::class, 'friend_lists', 'friend_id', 'user_id')->wherePivot('status', '=', 1);
+    }
+    function friendsAdded(){
         return $this->belongsToMany(User::class, 'friend_lists', 'user_id', 'friend_id')->wherePivot('status', '=', 1);
     }
     function friendsRequested(){
@@ -32,5 +35,8 @@ class User extends Authenticatable
     }
     function incomeFriendRequest(){
         return $this->belongsToMany(User::class, 'friend_lists', 'friend_id', 'user_id')->wherePivot('status','=',0);
+    }
+    function userPaymentInformation(){
+        return $this->hasOne(UserPaymentInformations::class);
     }
 }

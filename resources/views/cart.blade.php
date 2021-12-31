@@ -7,10 +7,11 @@
             @php
                 $totalPrice=0;
             @endphp
+            <h3 class="m-3"><b>Shopping Cart</b></h3>
             @foreach ($game as $item)
             @php
                 $totalPrice+=$item->game[0]->gameDetail->price;
-            @endphp
+                @endphp
             <div class="d-flex flex-row mt-2 pr-2 pl-2">
                <div>
                   <img class="cart-img card-img" src="{{ asset('game_assets/img/'.$item->game[0]->gameDetail->game_cover)}}" alt="Bologna">

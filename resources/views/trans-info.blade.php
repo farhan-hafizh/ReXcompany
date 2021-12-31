@@ -2,13 +2,14 @@
 
 @section('main-content')
     <div class="container-fluid p-5">
+
         <h1>Transaction Information</h1>
         <form action="/trans-info" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="card-name"><b>Card Name</b></label>
-                <input class="form-control @error('cardname') is-invalid  @enderror" placeholder="Card Name" type="text" name="cardname">
-                @error('cardname')
+                <input class="form-control @error('card_name') is-invalid  @enderror" placeholder="Card Name" type="text" name="card_name" value="{{(isset($userPayInfo[0])) ? $userPayInfo[0]->card_name : ""}}">
+                @error('card_name')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -16,8 +17,8 @@
             </div>
             <div class="form-group">
                 <label for="card-number"><b>Card Number</b></label>
-                <input class="form-control @error('cardnumber') is-invalid  @enderror" placeholder="Card Number" type="text" name="cardnumber">
-                @error('cardnumber')
+                <input class="form-control @error('card_number') is-invalid  @enderror" placeholder="Card Number" type="text" name="card_number" value="{{(isset($userPayInfo[0])) ? $userPayInfo[0]->card_number : ""}}">
+                @error('card_number')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -29,16 +30,16 @@
                         <label for="expired-date"><b>Expired Date</b></label>
                         <div class="d-flex justify-content-around">
                             <div class="w-50 mr-1">
-                                <input type="text" class=" form-control @error('month') is-invalid  @enderror" placeholder="MM" name="month">
-                                @error('month')
+                                <input type="text" class=" form-control @error('expired_month') is-invalid  @enderror" placeholder="MM" name="expired_month" value="{{(isset($userPayInfo[0])) ? $userPayInfo[0]->expired_month : ""}}">
+                                @error('expired_month')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="w-50 ml-1">
-                                <input class="form-control @error('year') is-invalid  @enderror" type="text" placeholder="YYYY" name="year">
-                                @error('year')
+                                <input class="form-control @error('expired_year') is-invalid  @enderror" type="text" placeholder="YYYY" name="expired_year" value="{{(isset($userPayInfo[0])) ? $userPayInfo[0]->expired_year : ""}}">
+                                @error('expired_year')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -48,8 +49,8 @@
                     </div>
                     <div class="ml-3 w-25">
                         <label for="cvc"><b>CVC/CVV</b></label>
-                        <input class="form-control @error('cvc') is-invalid  @enderror" type="text" name="cvc" placeholder="3 or 4 digit number">
-                        @error('cvc')
+                        <input class="form-control @error('cvc_cvv') is-invalid  @enderror" type="text" name="cvc_cvv" placeholder="3 or 4 digit number" value="{{(isset($userPayInfo[0])) ? $userPayInfo[0]->cvc_cvv : ""}}">
+                        @error('cvc_cvv')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -59,13 +60,17 @@
             </div>
             <div class="form-group d-flex flex-row ">
                 <div class="w-75 pr-2">
+                    @php
+                        $countryId=(isset($userPayInfo[0])) ? $userPayInfo[0]->country_id:1;
+                        
+                    @endphp
                     <label for="country"><b>Country</b></label>
-                    <select name="country" class="form-control @error('country') is-invalid  @enderror">
+                    <select name="country_id" class="form-control @error('country_id') is-invalid  @enderror">
                         @foreach ($country as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option> 
+                        <option value="{{$item->id}}" @if ($countryId ==$item->id) selected="selected" @endif>{{$item->name}}</option> 
                         @endforeach
                     </select>
-                    @error('country')
+                    @error('country_id')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -73,7 +78,7 @@
                 </div>
                 <div class="w-25 pl-2">
                     <label for="zip"><b>ZIP</b></label>
-                    <input class="form-control @error('zip') is-invalid  @enderror" type="text" name="zip" placeholder="ZIP">
+                    <input class="form-control @error('zip') is-invalid  @enderror" type="text" name="zip" placeholder="ZIP" value="{{(isset($userPayInfo[0])) ? $userPayInfo[0]->zip : ""}}">
                     @error('zip')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -90,6 +95,7 @@
                       </svg> Checkout</button>
                 </div>
                 <div>
+                    <input type="hidden" value="{{(isset($userPayInfo[0])) ? $userPayInfo[0]->id : ""}}" name="paymentId">
                     <input type="hidden" value="{{$price}}" name="price">
                     <p>Total Price: <b>Rp. {{number_format($price,2)}}</b></p>
                 </div>

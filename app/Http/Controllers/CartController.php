@@ -13,7 +13,8 @@ class CartController extends Controller
     public function index(){
         return view('cart',[
             'title' => 'Cart',
-            'game' => Transaction::with(['game','game.gameDetail','game.genre'])->get(),
+        'game' => Transaction::with(['game','game.gameDetail','game.genre'])
+        ->where('user_id','=',Auth::id())->where('status','=',0)->get(),
         ]);
     }
     public function destroy($id){
