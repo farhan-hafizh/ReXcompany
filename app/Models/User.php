@@ -24,19 +24,23 @@ class User extends Authenticatable
             ]
         ];
     }
-    function friendsAddedBy(){
+    public function friendsAddedBy(){
         return $this->belongsToMany(User::class, 'friend_lists', 'friend_id', 'user_id')->wherePivot('status', '=', 1);
     }
-    function friendsAdded(){
+    public function friendsAdded(){
         return $this->belongsToMany(User::class, 'friend_lists', 'user_id', 'friend_id')->wherePivot('status', '=', 1);
     }
-    function friendsRequested(){
+    public function friends(){
+        return $this->friendsAdded->merge($this->friendsAddedBy);
+    }
+
+    public function friendsRequested(){
         return $this->belongsToMany(User::class, 'friend_lists', 'user_id', 'friend_id')->wherePivot('status', '=', 0);
     }
-    function incomeFriendRequest(){
+    public function incomeFriendRequest(){
         return $this->belongsToMany(User::class, 'friend_lists', 'friend_id', 'user_id')->wherePivot('status','=',0);
     }
-    function userPaymentInformation(){
+    public function userPaymentInformation(){
         return $this->hasOne(UserPaymentInformations::class);
     }
 }

@@ -28,10 +28,10 @@
             @endforeach
         </div>
         <div>
-            <p>Total Price: <b>Rp. {{number_format($price,2)}}</b></p>
+            <p class="ml-3">Total Price: <b>Rp. {{number_format($price,2)}}</b></p>
         </div>
         <div class="m-3">
-            <a href="/home">Home</a>
+            <a href="/home" class="btn btn-dark">Home</a>
         </div>
 </div>
 @endsection

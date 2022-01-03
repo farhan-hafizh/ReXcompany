@@ -48,11 +48,11 @@ class TransInfoController extends Controller
             UserPaymentInformations::updateOrCreate(['id'=>$request->get('paymentId')],$validated);
             
             $userId=Auth::id();
-            $data=Transaction::where('user_id','=',$userId)
-            ->where('status','=',0)
-            ->get();;
             $transID=strtoupper(md5((string) Str::uuid().time()));
             
+            $data=Transaction::where('user_id','=',$userId)
+            ->where('status','=',0)
+            ->get();
             $gamePurchased=0;
 
             foreach ($data as $item) {

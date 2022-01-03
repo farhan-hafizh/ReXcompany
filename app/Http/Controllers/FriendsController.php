@@ -14,7 +14,7 @@ class FriendsController extends Controller
         return view('friends',[
             'title' => 'Friends',
             //merge the collection
-            'friends' => Auth::user()->friendsAdded->merge(Auth::user()->friendsAddedBy),
+            'friends' => Auth::user()->friends(),
             'requesting' => Auth::user()->friendsRequested,
             'pending' => Auth::user()->incomeFriendRequest,
         ]);

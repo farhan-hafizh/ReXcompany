@@ -10,11 +10,9 @@ use Illuminate\Support\Facades\DB;
 class TransHistoryController extends Controller
 {
     public function index(){
-        // dd(DB::table('transactions')->get()->groupBy('user_id')->toArray());
-        // dd(Transaction::with(['game','game.gameDetail'])->where('user_id','=',Auth::id())->get()->groupBy('transaction_id'));
         return view('trans-history',[
             'title' => 'Transaction History',
-            'transHistory' => Transaction::with(['game','game.gameDetail'])->where('user_id','=',Auth::id())->get()->groupBy('transaction_id')
+            'transHistory' => Transaction::with(['game','game.gameDetail'])->where('user_id','=',Auth::id())->where('status','=',1)->get()->groupBy('transaction_id')
         ]);
     }
     public function transReceipt($transId,$price){
@@ -26,3 +24,4 @@ class TransHistoryController extends Controller
         ]);
     }
 }
+//http://rexcompany.test/trans-receipt/5DBD702CE730F473F5EB0EE16E5931A3/300000
